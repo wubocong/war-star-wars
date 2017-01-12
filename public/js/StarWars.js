@@ -93,8 +93,8 @@ http://codepen.io/TimPietrusky/pen/eHGfj
     this.el.append(this.animation);
 
     // adjust animation speed
-    var titles = $('.titles > div', this.animation)[0];
-    if (titles.offsetHeight > 1977) // 1997 is year of the first Star Wars movie.
+    var titles = $('.titles > div', this.animation).get(0);
+    if (titles.offsetHeight > 1977) // 1977 is year of the first Star Wars movie.
     {
       var exceedSize = titles.offsetHeight - 1977;
       var animConstant = 0.04041570438799076;

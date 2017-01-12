@@ -68,7 +68,7 @@
       }
 
       try {
-        if (!selector || selector === 'window') {
+        if (!selector || selector === 'window' || selector === 'document') {
           throw 'Error: Invalid selector';
         } else if (!!selector.nodeType && (selector.nodeType === 1 || selector.nodeType === 9) || selector === window || selector === document) {
           this.els = [selector];

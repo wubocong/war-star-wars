@@ -5,7 +5,7 @@ var del = require('del');
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
 
 gulp.task('connect', function() {
   connect.server({
@@ -39,10 +39,10 @@ gulp.task('build', ['sass', 'clean-build'], function() {
   gulp.src('public/index.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('styles.css', minifyCss()))
+    .pipe(gulpif('styles.css', cleanCSS({compatibility: 'ie8'})))
     .pipe(gulp.dest('dist'));
 
-  gulp.src(['./public/*.*', './public/.nojekyll', '!public/index.html', '!public/css/styles.css', '!public/css/bb8.css', '!public/js/*.js'])
+  gulp.src(['./public/*.*', '!public/index.html', '!public/atat.html', '!public/css/styles.css', '!public/css/atat.css', '!public/js/*.js'])
     .pipe(gulp.dest('./dist'));
 });
 
