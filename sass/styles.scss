@@ -1,7 +1,6 @@
 // generic transform
 @mixin transform($transforms) {
   -moz-transform: $transforms;
-  -o-transform: $transforms;
   -ms-transform: $transforms;
   -webkit-transform: $transforms;
   transform: $transforms;
@@ -11,21 +10,42 @@
   -webkit-backface-visibility: $arguments;
   -moz-backface-visibility: $arguments;
   -ms-backface-visibility: $arguments;
-  -o-backface-visibility: $arguments;
   backface-visibility: $arguments;
 }
 
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+// Used only in the Form input. The text is a outlined SVG Text
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+$timeFactor: 1;
+$introColor: rgb(75, 213, 238);
+$titlesColor: #ffd54e;
+@import url(http://fonts.useso.com/css?family=News+Cycle:400,700);
 @font-face {
   font-family: StarWars;
   src: url('../font/Starjedi.ttf');
 }
 
-$timeFactor: 1;
-$introColor: rgb(75,
-213,
-238);
-$titlesColor: #ffd54e;
 html,
 body {
   width: 100%;
@@ -44,17 +64,76 @@ button::-moz-focus-inner {
   border: 0;
 }
 
+.running {
+  overflow: hidden;
+  .bg {
+    // animation: scrolldown 7s * $timeFactor 86s * $timeFactor forwards;
+    animation: scrolldown 0s * $timeFactor 0s * $timeFactor forwards;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.blink-button {
+  font-family: StarWars;
+  cursor: pointer;
+  font-size: 50px;
+  border: 0;
+  background: transparent;
+  color: $titlesColor;
+  text-shadow: none;
+  transition: text-shadow 0.5s ease-out;
+  outline: none;
+  &:focus,
+  &:hover {
+    text-shadow: -1px 1px 8px #45f500, 1px -1px 8px #45f500;
+  }
+}
+
+.bg {
+  width: 100%;
+  height: 4100px;
+  background-color: black;
+  background: url('../img/bg-stars.png') repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.page-loader {
+  .inner {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .starwars {
   section {
     position: absolute;
     top: 45%;
-    left: 50%;
     z-index: 1;
+  }
+  .verticalWrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   .introBg {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: black;
@@ -65,43 +144,32 @@ button::-moz-focus-inner {
     margin: 0 auto;
     padding: 0 100px;
     position: static;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     font-size: 500%;
     font-weight: 400;
     color: $introColor;
     opacity: 0;
     animation: intro 6s * $timeFactor ease-out 1s * $timeFactor;
-    @media (max-height: 720px) {
-      font-size: 350%;
-    }
-  }
-  .logo {
-    font-family: StarWars;
-    text-align: center;
-    position: static;
-    margin: 0 auto;
-    opacity: 0;
-    animation: logo 11s * $timeFactor cubic-bezier(0.11, 0.51, 0.48, 0.88) 9s * $timeFactor;
-    // animation-iteration-count: infinite; // for testing only
-    // animation-delay: 0s;
-    img {
-      width: 300px;
+    @media only screen and (max-width: 720px) {
+      font-size: 250%;
+      padding: 0 50px;
     }
   }
   .titles {
     $titles-width: 14.65em;
     width: $titles-width;
     margin: 0 0 0 (- $titles-width / 2);
-    @media only screen and (max-width: 960px) and (orientation: portrait) {
-      $titles-width: 13.65em;
-      width: $titles-width;
-      margin: 0 0 0 (- $titles-width / 2);
-    }
     top: auto;
     bottom: 0;
     height: 50em;
     font-size: 350%;
+    @media only screen and (max-width: 720px) {
+      $titles-width: 100%;
+      width: $titles-width;
+      margin: 0;
+      font-size: 175%;
+    }
     text-align: justify;
     overflow: hidden;
     transform-origin: 50% 100%;
@@ -109,8 +177,8 @@ button::-moz-focus-inner {
     >div {
       position: absolute;
       top: 100%;
-      animation: titles 73s * $timeFactor linear 13s * $timeFactor;
-      // animation: titles 0s * $timeFactor linear 0s * $timeFactor;
+      // animation: titles 73s * $timeFactor linear 13s * $timeFactor;
+      animation: titles 0s * $timeFactor linear 0s * $timeFactor;
       >p {
         margin: 1.35em 0 1.85em 0;
         line-height: 1.35em;
@@ -122,20 +190,103 @@ button::-moz-focus-inner {
       }
     }
   }
+  .logo {
+    font-family: StarWars;
+    text-align: center;
+    position: static;
+    margin: 0 auto;
+    opacity: 0;
+    animation: logo 11s * $timeFactor cubic-bezier(0.11, 0.51, 0.48, 0.88) 9s * $timeFactor;
+    // animation-iteration-count: infinite; // for testing only
+    // animation-delay: 0s;
+    >img {
+      width: 300px;
+    }
+    >svg {
+      width: 900px;
+      display: none;
+      font-size: 210px;
+    }
+  }
 }
 
-.verticalWrapper {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+.war-title {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  margin-top: 100px;
+  text-align: center;
+  font-family: StarWars;
+  width: 50%;
+  >h1 {
+    font-size: 5em;
+  }
+  @media only screen and (max-width: 720px) {
+    width: 100%;
+    margin-top: 0;
+    &>h1 {
+      font-size: 2em;
+    }
+  }
 }
 
+.me {
+  text-align: center;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  font-size: 1em;
+  z-index: 10;
+  a {
+    color: $titlesColor;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  @media only screen and (max-width: 720px) {
+    width: 100%;
+    right: 0;
+    margin-bottom: 6em;
+  }
+}
+
+.deathstar {
+  width: 655px;
+  position: absolute;
+  right: 100px;
+  >img{
+    width: 100%;
+  }
+  @media only screen and (max-width: 720px) {
+    width: 70%;
+    margin: 0 15%;
+    right: 0;
+    position: relative;
+  }
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 1em;
+  text-align: center;
+  font-size: 0.7em;
+  color: #9e9e42;
+  a {
+    color: $titlesColor;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  @media only screen and (max-width: 720px) {
+    width: 70%;
+    margin: 0 15%;
+    line-height: 1.2em;
+  }
+}
+
+// css animations
 @keyframes intro {
   0% {
     opacity: 0;
@@ -188,123 +339,6 @@ button::-moz-focus-inner {
   }
 }
 
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.playButton {
-  font-family: StarWars;
-  cursor: pointer;
-  font-size: 50px;
-  border: 0;
-  background: transparent;
-  color: $titlesColor;
-  text-shadow: none;
-  transition: text-shadow 0.5s ease-out;
-  outline: none;
-  &:focus,
-  &:hover {
-    text-shadow: -1px 1px 8px #45f500, 1px -1px 8px #45f500;
-  }
-}
-
-// Used only in the Form input. The text is a outlined SVG Text
-/// Stroke font-character
-/// @param  {Integer} $stroke - Stroke width
-/// @param  {Color}   $color  - Stroke color
-/// @return {List}            - text-shadow list
-@function stroke($stroke,
-$color) {
-  $shadow: ();
-  $from: $stroke*-1;
-  @for $i from $from through $stroke {
-    @for $j from $from through $stroke {
-      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
-    }
-  }
-  @return $shadow;
-}
-
-/// Stroke font-character
-/// @param  {Integer} $stroke - Stroke width
-/// @param  {Color}   $color  - Stroke color
-/// @return {Style}           - text-shadow
-@mixin stroke($stroke,
-$color) {
-  text-shadow: stroke($stroke, $color);
-}
-
-#loader {
-  .inner {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-#pageTitle {
-  line-height: 100%;
-  font-family: StarWars;
-}
-
-.star-wars-alert {
-  background-color: black !important;
-  border: 2px solid $titlesColor;
-  h2,
-  p {
-    color: $titlesColor !important;
-  }
-  button {
-    border: 2px solid $titlesColor !important;
-    color: $titlesColor !important;
-    background-color: black !important;
-  }
-}
-
-#footer {
-  position: fixed;
-  width: 100%;
-  bottom: 1em;
-  text-align: center;
-  font-size: 0.7em;
-  color: #9e9e42;
-  a {
-    color: $titlesColor;
-    text-decoration: none;
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
-  @media only screen and (max-width: 960px) and (orientation: portrait) {
-    font-size: 1em;
-    width: 70%;
-    margin: 0 15%;
-  }
-}
-
-.bg {
-  width: 100%;
-  height: 4100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: black;
-  background: url('../img/bg-stars.png') repeat;
-}
-
-.running {
-  overflow: hidden;
-  .bg {
-    animation: scrolldown 7s * $timeFactor 86s * $timeFactor forwards;
-    // animation: scrolldown 0s * $timeFactor 0s * $timeFactor forwards;
-  }
-}
-
 @keyframes scrolldown {
   0% {
     transform: translateY(0);
@@ -314,27 +348,22 @@ $color) {
   }
 }
 
-.deathstar {
-  background: black url(../img/deathstar.png) no-repeat;
-  width: 655px;
-  height: 663px;
-  position: absolute;
-  bottom: 1150px;
-  right: 100px;
+@keyframes pulseDownload {
+  0% {
+    text-shadow: none;
+  }
+  40% {
+    text-shadow: -1px 1px 93px #45f500, 1px -1px 23px #45f500;
+  }
+  60% {
+    text-shadow: -1px 1px 93px #45f500, 1px -1px 23px #45f500;
+  }
+  100% {
+    text-shadow: none;
+  }
 }
 
-#logosvg {
-  width: 900px;
-  display: none;
-  font-size: 210px;
-}
-
-.playAudio {
-  width: 100%;
-  text-align: center;
-  font-size: 50px;
-}
-
+// sweet alert custom
 .sweet-alert {
   fieldset {
     input {
@@ -359,63 +388,20 @@ $color) {
   .sa-input-error::after {
     background-color: #C31D00 !important;
   }
-}
-
-.sa-error-container {
-  background-color: #3c3808 !important;
-}
-
-iframe {
-  border: none;
-}
-
-.me {
-  text-align: center;
-  position: fixed;
-  bottom: 1em;
-  right: 1em;
-  z-index: 10;
-  a {
-    color: $titlesColor;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+  &.star-wars-alert {
+    background-color: black !important;
+    border: 2px solid $titlesColor;
+    h2,
+    p {
+      color: $titlesColor !important;
+    }
+    button {
+      border: 2px solid $titlesColor !important;
+      color: $titlesColor !important;
+      background-color: black !important;
     }
   }
-  @media only screen and (max-width: 960px) and (orientation: portrait) {
-    width: 100%;
-    right: 0;
-    font-size: 1.5em;
-    margin-bottom: 6em;
-  }
-}
-
-@keyframes pulseDownload {
-  0% {
-    text-shadow: none;
-  }
-  40% {
-    text-shadow: -1px 1px 93px #45f500, 1px -1px 23px #45f500;
-  }
-  60% {
-    text-shadow: -1px 1px 93px #45f500, 1px -1px 23px #45f500;
-  }
-  100% {
-    text-shadow: none;
-  }
-}
-
-.war-title {
-  position: absolute;
-  bottom: 1400px;
-  left: 100px;
-  text-align: center;
-  @media only screen and (max-width: 960px) and (orientation: portrait) {
-    bottom: 800px;
-    width: 100%;
-    left: 0;
-  }
-  >h1 {
-    font-size: 5em;
+  .sa-error-container {
+    background-color: #3c3808 !important;
   }
 }

@@ -20,7 +20,7 @@
     }
   });
   // prevent arrow scrolling in firefox
-  $(window).on("keydown", function(e) {
+  $(window).on('keydown', function(e) {
     // space and arrow keys
     var type = document.activeElement.type || '';
     if (!type.startsWith('text')) {
@@ -36,9 +36,9 @@
 
   function toggleLoading() {
     if (isLoading) {
-      $('#loader').hide();
+      $('.page-loader').hide();
     } else {
-      $('#loader').show();
+      $('.page-loader').show();
     }
     isLoading = !isLoading;
   }
@@ -51,15 +51,15 @@
       $('#logoimg').css('width', $(window).width() + 'px');
       $('#logosvg').css('width', $(window).width() + 'px');
 
-      $("body").css("overflow", "hidden");
+      $('body').css('overflow', 'hidden');
       $('body').scrollTop(0);
     });
     $(window).on('load', function() {
       $(window).trigger('resize');
     });
     if (!Modernizr.cssanimations) {
-      sweetAlert("Incompatible Explorer Detected", "This website is not compatible with Internet Explorer 9 and below, please use higher version or Chrome. Sorry for the inconvenience.", "error");
-      $('#loader').hide();
+      sweetAlert('Incompatible Explorer Detected', 'This website is not compatible with Internet Explorer 9 and below, please use higher version or Chrome. Sorry for the inconvenience.', 'error');
+      $('.page-loader').hide();
       return;
     }
 
@@ -68,7 +68,7 @@
     var play = function() {
       var buffered = StarWars.audio.buffered;
       if (buffered.length === 0 || (buffered.end(buffered.length - 1) === 0 && !audioLoaded)) {
-        $('#loader').hide();
+        $('.page-loader').hide();
         StarWars.audio.oncanplay = function() {
           toggleLoading();
           notPlayed = false;

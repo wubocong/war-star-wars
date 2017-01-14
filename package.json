@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp build",
-    "start": "gulp"
+    "start": "gulp",
+    "sass": "gulp sass",
+    "min": "cross-env ./node_modules/clean-css/bin/cleancss -o ./min.css ./styles.css"
   },
   "devDependencies": {
     "del": "^2.2.0",

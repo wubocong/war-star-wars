@@ -10,7 +10,8 @@ var cleanCSS = require('gulp-clean-css');
 gulp.task('connect', function() {
   connect.server({
     root: 'public',
-    livereload: true
+    livereload: true,
+    host: '0.0.0.0'
   });
 });
 
@@ -39,11 +40,19 @@ gulp.task('build', ['sass', 'clean-build'], function() {
   gulp.src('public/index.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('styles.css', cleanCSS({compatibility: 'ie8'})))
-    .pipe(gulp.dest('dist'));
-
-  gulp.src(['./public/*.*', '!public/index.html', '!public/atat.html', '!public/css/styles.css', '!public/css/atat.css', '!public/js/*.js'])
+    .pipe(gulpif('*.css', cleanCSS({level: 2})))
     .pipe(gulp.dest('./dist'));
+
+  gulp.src(['./public/*.*', '!public/index.html', '!public/atat.html'])
+    .pipe(gulp.dest('./dist'));
+  gulp.src(['./public/js/warQuery.js'])
+    .pipe(gulp.dest('./dist/js'));
+  gulp.src(['./public/font/*.*'])
+    .pipe(gulp.dest('./dist/font'));
+  gulp.src(['./public/img/*.*'])
+    .pipe(gulp.dest('./dist/img'));
+  gulp.src(['./public/music/*.*'])
+    .pipe(gulp.dest('./dist/music'));
 });
 
 gulp.task('default', ['sass', 'connect', 'watch']);

@@ -85,7 +85,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
 
   StarWarsOpening.prototype.play = function() {
     $('.pageHide').hide();
-    $('#loader').hide(); // grants the loader to hide. Sometimes doesn't hide, maybe due to history navigation in browser.
+    $('.page-loader').hide(); // grants the loader to hide. Sometimes doesn't hide, maybe due to history navigation in browser.
     $('body').removeClass('running');
     $('body').addClass('running');
     $('body').scrollTop(0);
