@@ -204,13 +204,15 @@
       return this;
     },
     hasClass: function(className) {
-      className = className.trim();
-
       var result = this.each(function() {
-        return (this.className.indexOf(className) > -1);
+        if (this.classList) {
+          return this.classList.contains(className)
+        } else {
+          return !!this.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+        }
       });
 
-      return ((result + this.length) > 0);
+      return result;
     },
     toggleClass: function(className) {
       className = className.trim();
@@ -270,18 +272,16 @@
       }
       return this;
     },
-    removeClass: function(classes) {
+    removeClass: function(className) {
       var remove = function() {
-        var existing = this.className + '';
-        var removing = classes.trim().split(' ');
-
-        for (var i = 0; i < removing.length; i++) {
-          existing = existing.replace(removing[i], '');
+        if (this.classList){
+          this.classList.remove(className)
         }
-
-        this.className = existing;
+        else {
+          var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+          this.className = this.className.replace(reg, '')
+        }
       };
-
       this.each(remove);
       return this;
     },
@@ -318,13 +318,15 @@
         return this.els[0].scrollTop;
       }
     },
-    css: function(css) {
-      var set = function() {
-        return undefined;
-      };
+    css: function(key, value) {
+      function set(key, value) {
+        this.style[key] = value;
+      }
 
-      if (css) { // Set
-        this.each(set);
+      if (key && value) { // Set
+        this.each(function() {
+          set.call(this, key, value);
+        });
       } else { // Get css for first element
         return '';
       }

@@ -40,7 +40,7 @@ gulp.task('build', ['sass', 'clean-build'], function() {
   gulp.src('public/index.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', cleanCSS({level: 2})))
+    .pipe(gulpif('*.css', cleanCSS()))
     .pipe(gulp.dest('./dist'));
 
   gulp.src(['./public/*.*', '!public/index.html', '!public/atat.html'])

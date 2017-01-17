@@ -62,7 +62,8 @@ http://codepen.io/TimPietrusky/pen/eHGfj
     //   }, 10000);
     // });
     $(this.audio).on('ended', function() {
-      $('.pageHide').show(); // show footer and social buttons
+      $('.page-hide').show();
+      $('.page-hide').removeClass('page-hide'); // show footer and social buttons
     });
   }
 
@@ -70,7 +71,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
    * Resets the animation and shows the start screen.
    */
   StarWarsOpening.prototype.reset = function() {
-    // $('.pageHide').show(); // show footer and social buttons
+    // $('.page-hide').show(); // show footer and social buttons
     // reset the animation
     this.cloned = this.animation.clone(true);
     this.animation.remove();
@@ -84,7 +85,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
   };
 
   StarWarsOpening.prototype.play = function() {
-    $('.pageHide').hide();
+    $('.page-hide').hide();
     $('.page-loader').hide(); // grants the loader to hide. Sometimes doesn't hide, maybe due to history navigation in browser.
     $('body').removeClass('running');
     $('body').addClass('running');

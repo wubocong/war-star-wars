@@ -20,7 +20,7 @@ button::-moz-focus-inner {
 .running {
   overflow: hidden; }
   .running .bg {
-    animation: scrolldown 0s 0s forwards; }
+    animation: scrolldown 7s 86s forwards; }
 
 .noselect {
   -webkit-touch-callout: none;
@@ -28,6 +28,9 @@ button::-moz-focus-inner {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+
+.page-hide {
+  display: none; }
 
 .blink-button {
   font-family: StarWars;
@@ -45,11 +48,39 @@ button::-moz-focus-inner {
 .bg {
   width: 100%;
   height: 4100px;
+  padding-top: 2200px;
   background-color: black;
   background: url("../img/bg-stars.png") repeat;
-  position: absolute;
+  position: relative;
   top: 0;
-  left: 0; }
+  left: 0;
+  box-sizing: border-box; }
+  .bg .war-title {
+    position: relative;
+    margin-top: 100px;
+    text-align: center;
+    font-family: StarWars;
+    width: 50%; }
+    .bg .war-title > h1 {
+      font-size: 5em; }
+    @media only screen and (max-width: 720px) {
+      .bg .war-title {
+        width: 100%;
+        margin-top: 0; }
+        .bg .war-title > h1 {
+          font-size: 2em; } }
+  .bg .deathstar {
+    width: 655px;
+    position: absolute;
+    right: 100px; }
+    .bg .deathstar > img {
+      width: 100%; }
+    @media only screen and (max-width: 720px) {
+      .bg .deathstar {
+        width: 70%;
+        margin: 0 15%;
+        right: 0;
+        position: relative; } }
 
 .page-loader .inner {
   width: 100%;
@@ -102,6 +133,7 @@ button::-moz-focus-inner {
   margin: 0 0 0 -7.325em;
   top: auto;
   bottom: 0;
+  left: 50%;
   height: 50em;
   font-size: 350%;
   text-align: justify;
@@ -114,12 +146,12 @@ button::-moz-focus-inner {
   @media only screen and (max-width: 720px) {
     .starwars .titles {
       width: 100%;
-      margin: 0;
-      font-size: 175%; } }
+      font-size: 175%;
+      margin: 0 0 0 -50%; } }
   .starwars .titles > div {
     position: absolute;
     top: 100%;
-    animation: titles 0s linear 0s; }
+    animation: titles 73s linear 13s; }
     .starwars .titles > div > p {
       margin: 1.35em 0 1.85em 0;
       line-height: 1.35em;
@@ -145,28 +177,12 @@ button::-moz-focus-inner {
     display: none;
     font-size: 210px; }
 
-.war-title {
-  position: absolute;
-  margin-top: 100px;
-  text-align: center;
-  font-family: StarWars;
-  width: 50%; }
-  .war-title > h1 {
-    font-size: 5em; }
-  @media only screen and (max-width: 720px) {
-    .war-title {
-      width: 100%;
-      margin-top: 0; }
-      .war-title > h1 {
-        font-size: 2em; } }
-
 .me {
-  text-align: center;
   position: fixed;
-  bottom: 1em;
-  right: 1em;
+  text-align: right;
   font-size: 1em;
-  z-index: 10; }
+  bottom: 0.5em;
+  width: 100%; }
   .me a {
     color: #ffd54e;
     text-decoration: none; }
@@ -174,29 +190,16 @@ button::-moz-focus-inner {
       text-decoration: underline; }
   @media only screen and (max-width: 720px) {
     .me {
-      width: 100%;
-      right: 0;
+      text-align: center;
+      bottom: 0;
       margin-bottom: 6em; } }
 
-.deathstar {
-  width: 655px;
-  position: absolute;
-  right: 100px; }
-  .deathstar > img {
-    width: 100%; }
-  @media only screen and (max-width: 720px) {
-    .deathstar {
-      width: 70%;
-      margin: 0 15%;
-      right: 0;
-      position: relative; } }
-
 .footer {
-  position: fixed;
+  position: absolute;
   width: 100%;
-  bottom: 1em;
   text-align: center;
   font-size: 0.7em;
+  bottom: 1em;
   color: #9e9e42; }
   .footer a {
     color: #ffd54e;
