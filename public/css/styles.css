@@ -1,4 +1,4 @@
-@import url(http://fonts.useso.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.css.network/css?family=News+Cycle:400,700);
 @font-face {
   font-family: StarWars;
   src: url("../font/Starjedi.ttf"); }
@@ -88,8 +88,7 @@ button::-moz-focus-inner {
 
 .starwars section {
   position: absolute;
-  top: 45%;
-  z-index: 1; }
+  top: 45%; }
 
 .starwars .verticalWrapper {
   display: flex;

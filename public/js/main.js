@@ -45,7 +45,9 @@
 
   toggleLoading();
   $(document).ready(function() {
-
+    $('#read').on('click', function() {
+      window.location = './blog';
+    });
     // logo size calc
     $(window).on('resize', function() {
       $('#logoimg').css('width', $(window).width() + 'px');

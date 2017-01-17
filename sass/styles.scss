@@ -40,7 +40,7 @@
 $timeFactor: 1;
 $introColor: rgb(75, 213, 238);
 $titlesColor: #ffd54e;
-@import url(http://fonts.useso.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.css.network/css?family=News+Cycle:400,700);
 @font-face {
   font-family: StarWars;
   src: url('../font/Starjedi.ttf');
@@ -154,7 +154,6 @@ button::-moz-focus-inner {
   section {
     position: absolute;
     top: 45%;
-    z-index: 1;
   }
   .verticalWrapper {
     display: flex;
