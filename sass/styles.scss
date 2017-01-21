@@ -42,8 +42,12 @@ $introColor: rgb(75, 213, 238);
 $titlesColor: #ffd54e;
 @import url(https://fonts.css.network/css?family=News+Cycle:400,700);
 @font-face {
-  font-family: StarWars;
-  src: url('../font/Starjedi.ttf');
+  font-family: StarWars; 
+  src: url('https://dn-warrior.qbox.me/Starjedi.eot');
+  src: url('https://dn-warrior.qbox.me/Starjedi.eot?#iefix') format('embedded-opentype'),
+  url('https://dn-warrior.qbox.me/Starjedi.woff') format('woff'),
+  url('https://dn-warrior.qbox.me/Starjedi.ttf') format('truetype'),
+  url('https://dn-warrior.qbox.me/Starjedi.svg') format('svg');
 }
 
 html,
@@ -80,10 +84,6 @@ button::-moz-focus-inner {
   user-select: none;
 }
 
-.page-hide {
-  display: none;
-}
-
 .blink-button {
   font-family: StarWars;
   cursor: pointer;
@@ -105,7 +105,7 @@ button::-moz-focus-inner {
   height: 4100px;
   padding-top: 2200px;
   background-color: black;
-  background: url('../img/bg-stars.png') repeat;
+  background: url('https://ok52y3z3l.qnssl.com/star-wars/bg-stars.png') repeat;
   position: relative;
   top: 0;
   left: 0;
@@ -119,7 +119,7 @@ button::-moz-focus-inner {
     >h1 {
       font-size: 5em;
     }
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 960px) {
       width: 100%;
       margin-top: 0;
       &>h1 {
@@ -134,7 +134,7 @@ button::-moz-focus-inner {
     >img {
       width: 100%;
     }
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 960px) {
       width: 70%;
       margin: 0 15%;
       right: 0;
@@ -148,6 +148,10 @@ button::-moz-focus-inner {
     width: 100%;
     text-align: center;
   }
+}
+
+.page-later {
+  display: none;
 }
 
 .starwars {
@@ -187,7 +191,7 @@ button::-moz-focus-inner {
     color: $introColor;
     opacity: 0;
     animation: intro 6s * $timeFactor ease-out 1s * $timeFactor;
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 960px) {
       font-size: 250%;
       padding: 0 50px;
     }
@@ -201,7 +205,7 @@ button::-moz-focus-inner {
     left: 50%;
     height: 50em;
     font-size: 350%;
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 960px) {
       $titles-width: 100%;
       width: $titles-width;
       font-size: 175%;
@@ -247,25 +251,25 @@ button::-moz-focus-inner {
   }
 }
 
-.me {
-  position: fixed;
-  text-align: right;
-  font-size: 1em;
-  bottom: 0.5em;
-  width: 100%;
-  a {
-    color: $titlesColor;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  @media only screen and (max-width: 720px) {
-    text-align: center;
-    bottom: 0;
-    margin-bottom: 6em;
-  }
-}
+// .me {
+//   position: fixed;
+//   text-align: right;
+//   font-size: 1em;
+//   bottom: 0.5em;
+//   width: 100%;
+//   a {
+//     color: $titlesColor;
+//     text-decoration: none;
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//   }
+//   @media only screen and (max-width: 960px) {
+//     text-align: center;
+//     bottom: 0;
+//     margin-bottom: 6em;
+//   }
+// }
 
 .footer {
   position: absolute;
@@ -282,7 +286,7 @@ button::-moz-focus-inner {
       text-decoration: none;
     }
   }
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 960px) {
     width: 70%;
     margin: 0 15%;
     line-height: 1.2em;

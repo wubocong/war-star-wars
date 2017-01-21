@@ -40,19 +40,19 @@ gulp.task('build', ['sass', 'clean-build'], function() {
   gulp.src('public/index.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', cleanCSS()))
+    .pipe(gulpif('*.css', cleanCSS({rebase: false})))
     .pipe(gulp.dest('./dist'));
 
-  gulp.src(['./public/*.*', '!public/index.html', '!public/atat.html'])
+  gulp.src('./public/logo.svg')
     .pipe(gulp.dest('./dist'));
-  gulp.src(['./public/js/warQuery.js'])
-    .pipe(gulp.dest('./dist/js'));
-  gulp.src(['./public/font/*.*'])
-    .pipe(gulp.dest('./dist/font'));
-  gulp.src(['./public/img/*.*'])
-    .pipe(gulp.dest('./dist/img'));
-  gulp.src(['./public/music/*.*'])
-    .pipe(gulp.dest('./dist/music'));
+});
+
+gulp.task('dist', function() {
+  connect.server({
+    root: 'dist',
+    host: '0.0.0.0',
+    port: 8008
+  });
 });
 
 gulp.task('default', ['sass', 'connect', 'watch']);

@@ -51,20 +51,6 @@ http://codepen.io/TimPietrusky/pen/eHGfj
     // Remove animation and shows the start screen
     this.reset();
     this.audio.oncanplay = args.onAudioLoad;
-
-    // var that = this;
-    // Reset the animation and shows the start screen
-    // $(this.audio).on('ended', function() {
-    //   that.audio.currentTime = 0;
-    //   that.reset();
-    //   setTimeout(function(){
-    //       $('body').removeClass('running');
-    //   }, 10000);
-    // });
-    $(this.audio).on('ended', function() {
-      $('.page-hide').show();
-      $('.page-hide').removeClass('page-hide'); // show footer and social buttons
-    });
   }
 
   /*
