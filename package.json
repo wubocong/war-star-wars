@@ -11,14 +11,14 @@
     "min": "cross-env ./node_modules/clean-css/bin/cleancss -o ./min.css ./styles.css"
   },
   "devDependencies": {
-    "del": "^2.2.0",
-    "gulp": "^3.9.0",
-    "gulp-clean-css": "^2.3.2",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
     "gulp-connect": "^5.0.0",
-    "gulp-if": "^2.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.0",
-    "gulp-useref": "^3.0.4",
+    "gulp-uglify": "^2.0.1",
+    "gulp-useref": "^3.1.2",
     "sass-lint": "^1.10.2"
   },
   "dependencies": {}
