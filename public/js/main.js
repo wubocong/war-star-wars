@@ -1,4 +1,4 @@
-$(function() {
+(function() {
   if (!Modernizr.cssanimations) {
     sweetAlert('Incompatible Explorer Detected', 'This website is not compatible with Internet Explorer 9 and below, please use higher version or Chrome. Sorry for the inconvenience.', 'error');
     $('.page-loader').hide();
@@ -64,4 +64,4 @@ $(function() {
   }
   $(window).on('resize', setLogo);
   $(window).on('load', setLogo);
-})
+});
