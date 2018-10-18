@@ -64,4 +64,4 @@
   }
   $(window).on('resize', setLogo);
   $(window).on('load', setLogo);
-});
+})();
