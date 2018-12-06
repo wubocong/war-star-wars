@@ -7,7 +7,7 @@ var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 var cleanCSS = require('gulp-clean-css');
 
-gulp.task('connect', function() {
+gulp.task('connect', function () {
   connect.server({
     root: 'public',
     livereload: true,
@@ -15,39 +15,46 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function () {
   gulp.src('./sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public/css'))
     .pipe(connect.reload());
 });
 
-gulp.task('reload', function() {
+gulp.task('reload', function () {
   gulp.src(['./public/**/*', '!./public/**/*.scss'])
     .pipe(connect.reload());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(['./public/**/*', '!./public/**/*.scss'], ['reload']);
   gulp.watch('./sass/**/*.scss', ['sass']);
 });
 
-gulp.task('clean-build', function() {
+gulp.task('clean-build', function () {
   del.sync('./dist/*');
 });
 
-gulp.task('build', ['sass', 'clean-build'], function() {
+gulp.task('build', ['sass', 'clean-build'], function () {
   gulp.src('public/index.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', cleanCSS({rebase: false})))
+    .pipe(gulpif('*.css', cleanCSS({
+      rebase: false
+    })))
     .pipe(gulp.dest('./dist'));
 
   gulp.src('./public/logo.svg')
     .pipe(gulp.dest('./dist'));
+
+  gulp.src('./public/font/**')
+    .pipe(gulp.dest('./dist/font'));
+  gulp.src('./public/music/**')
+    .pipe(gulp.dest('./dist/music'));
 });
 
-gulp.task('dist', function() {
+gulp.task('dist', function () {
   connect.server({
     root: 'dist',
     host: '0.0.0.0',
