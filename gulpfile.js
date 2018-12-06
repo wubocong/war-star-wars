@@ -45,9 +45,8 @@ gulp.task('build', ['sass', 'clean-build'], function () {
     })))
     .pipe(gulp.dest('./dist'));
 
-  gulp.src('./public/logo.svg')
-    .pipe(gulp.dest('./dist'));
-
+  gulp.src('./public/img/**')
+    .pipe(gulp.dest('./dist/img'));
   gulp.src('./public/font/**')
     .pipe(gulp.dest('./dist/font'));
   gulp.src('./public/music/**')
