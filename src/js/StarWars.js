@@ -31,7 +31,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
  * timpietrusky.com
  *
  */
-(function(global) {
+(function (global) {
 
   /*
    * Constructor
@@ -56,7 +56,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
   /*
    * Resets the animation and shows the start screen.
    */
-  StarWarsOpening.prototype.reset = function() {
+  StarWarsOpening.prototype.reset = function () {
     // $('.page-hide').show(); // show footer and social buttons
     // reset the animation
     this.cloned = this.animation.clone(true);
@@ -65,18 +65,18 @@ http://codepen.io/TimPietrusky/pen/eHGfj
     $(window).trigger('resize'); // trigger resize to allow scrol in the config form
   };
 
-  StarWarsOpening.prototype.resetAudio = function() {
+  StarWarsOpening.prototype.resetAudio = function () {
     this.audio.pause();
     this.audio.currentTime = 0;
   };
 
-  StarWarsOpening.prototype.play = function() {
+  StarWarsOpening.prototype.play = function () {
     $('.page-hide').hide();
     $('.page-loader').hide(); // grants the loader to hide. Sometimes doesn't hide, maybe due to history navigation in browser.
     $('body').removeClass('running');
     $('body').addClass('running');
     $('body').scrollTop(0);
-    this.audio.play();
+    this.audio.play().then().catch(console.log);
     this.el.append(this.animation);
 
     // adjust animation speed
