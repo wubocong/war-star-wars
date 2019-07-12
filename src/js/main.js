@@ -32,6 +32,7 @@
     onAudioLoad: function() {
       audioLoaded = true;
       function play() {
+        $('.prompt').hide();
         $(window).off('focus');
         $(window).off('touchend');
         toggleLoading();
