@@ -41,11 +41,7 @@
         });
       }
       if (!Modernizr.touchevents) {
-        if (document.hasFocus()) { // play if has focus
-          play();
-        } else {
-          $(window).on('focus', play);
-        }
+        $(window).on('click', play);
       } else {
         $(window).on('touchend', play);
       }

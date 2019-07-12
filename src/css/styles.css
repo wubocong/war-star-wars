@@ -79,6 +79,22 @@ button::-moz-focus-inner {
         margin: 0 15%;
         right: 0;
         position: relative; } }
+  .bg .prompt {
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    font-size: 80px;
+    line-height: 80px;
+    margin: -40px 0;
+    text-align: center;
+    color: #4bd5ee;
+    animation: 3s ease-in-out infinite blink; }
+    @media only screen and (max-width: 960px) {
+      .bg .prompt {
+        width: 80%;
+        margin: 0 10%;
+        right: 0;
+        position: relative; } }
 
 .page-loader .inner {
   width: 100%;
@@ -286,3 +302,11 @@ button::-moz-focus-inner {
 
 .sweet-alert .sa-error-container {
   background-color: #3c3808 !important; }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
