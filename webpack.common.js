@@ -22,7 +22,8 @@ module.exports = {
         use: [
           { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } },
           'css-loader',
-          'sass-loader'
+          { loader: 'postcss-loader'},
+          'sass-loader',
         ]
       },
       {
@@ -73,6 +74,5 @@ module.exports = {
       { from: 'src/font', to: 'font' },
       { from: 'src/img', to: 'img' }
     ]),
-  ],
-  devtool: 'eval-source-map'
+  ]
 };
