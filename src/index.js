@@ -4,7 +4,9 @@ import { isTouchScreen } from './js/isTouchScreen'
 import $ from 'jquery';
 import './css/styles.scss';
 
-(function () {
+$(window).on('load', function () {
+  $('.page-loader').hide();
+  $('.prompt').show();
   // prevent arrow scrolling in firefox
   $(window).on('keydown', function (e) {
     if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
@@ -12,34 +14,20 @@ import './css/styles.scss';
     }
   });
 
-  var isLoading = true;
-  function toggleLoading() {
-    if (isLoading) {
-      $('.page-loader').hide();
-    } else {
-      $('.page-loader').show();
-    }
-    isLoading = !isLoading;
-  }
-
   var StarWars = new StarWarsOpening({
     el: '.starwars',
     onAudioLoad: function () {
       function play() {
-        $(window).off('focus');
+        $('.prompt').hide();
+        $(window).off('click');
         $(window).off('touchend');
-        toggleLoading();
         StarWars.play();
         $('#read').on('click', function () {
           window.location = './blog';
         });
       }
       if (!isTouchScreen()) {
-        if (document.hasFocus()) { // play if has focus
-          play();
-        } else {
-          $(window).on('focus', play);
-        }
+        $(window).on('click', play);
       } else {
         $(window).on('touchend', play);
       }
@@ -58,4 +46,4 @@ import './css/styles.scss';
   }
   $(window).on('resize', setLogo);
   $(window).on('load', setLogo);
-})();
+});

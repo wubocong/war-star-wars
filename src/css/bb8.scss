@@ -7,6 +7,7 @@
   margin-left: -10em;
   position: absolute;
   animation: bump 0.1s infinite linear alternate;
+  z-index: 10;
 }
 
 .bb8-top {

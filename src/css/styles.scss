@@ -125,6 +125,24 @@ button::-moz-focus-inner {
       position: relative;
     }
   }
+  .prompt {
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    font-size: 80px;
+    line-height: 80px;
+    margin: -40px 0;
+    text-align: center;
+    color: $introColor;
+    animation: 3s ease-in-out infinite blink;
+    @media only screen and (max-width: 960px) {
+      width: 80%;
+      margin: 0 10%;
+      right: 0;
+      position: relative;
+    }
+  }
 }
 
 .page-loader {
@@ -352,4 +370,10 @@ button::-moz-focus-inner {
   100% {
     text-shadow: none;
   }
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }
