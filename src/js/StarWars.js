@@ -1,43 +1,7 @@
-/*
-http://codepen.io/TimPietrusky/pen/eHGfj
-
- * Star Wars opening crawl from 1977
- *
- * I freaking love Star Wars, but could not find
- * a web version of the original opening crawl from 1977.
- * So I created this one.
- *
- * I wrote an article where I explain how this works:
- * http://timpietrusky.com/star-wars-opening-crawl-from-1977
- *
- * Watch the Start Wars opening crawl on YouTube.
- * http://www.youtube.com/watch?v=7jK-jZo6xjY
- *
- * Stuff I used:
- * - CSS (animation, transform)
- * - HTML audio (the opening theme)
- * - SVG (the Star Wars logo from wikimedia.org)
- *   http://commons.wikimedia.org/wiki/File:Star_Wars_Logo.svg
- * - JavaScript (to sync the animation/audio)
- *
- * Thanks to Craig Buckler for his amazing article
- * which helped me to create this remake of the Star Wars opening crawl.
- * http://www.sitepoint.com/css3-starwars-scrolling-text/
- *
- * Sound copyright by The Walt Disney Company.
- *
- *
- * 2013 by Tim Pietrusky
- * timpietrusky.com
- *
- */
-(function(global) {
-
-  /*
-   * Constructor
-   */
-  function StarWarsOpening(args) {
-    // Context wrapper
+import $ from 'jquery';
+export class StarWarsOpening {
+  // Context wrapper
+  constructor(args) {
     this.el = $(args.el);
 
     // Audio to play the opening crawl
@@ -56,7 +20,7 @@ http://codepen.io/TimPietrusky/pen/eHGfj
   /*
    * Resets the animation and shows the start screen.
    */
-  StarWarsOpening.prototype.reset = function() {
+  reset() {
     // $('.page-hide').show(); // show footer and social buttons
     // reset the animation
     this.cloned = this.animation.clone(true);
@@ -65,12 +29,12 @@ http://codepen.io/TimPietrusky/pen/eHGfj
     $(window).trigger('resize'); // trigger resize to allow scrol in the config form
   };
 
-  StarWarsOpening.prototype.resetAudio = function() {
+  resetAudio() {
     this.audio.pause();
     this.audio.currentTime = 0;
   };
 
-  StarWarsOpening.prototype.play = function() {
+  play() {
     $('.page-hide').hide();
     $('.page-loader').hide(); // grants the loader to hide. Sometimes doesn't hide, maybe due to history navigation in browser.
     $('body').removeClass('running');
@@ -101,6 +65,5 @@ http://codepen.io/TimPietrusky/pen/eHGfj
         cssRule.appendRule("100% { top: " + animDist + "% }");
     }
   }
+}
 
-  global.StarWarsOpening = StarWarsOpening;
-})(this);

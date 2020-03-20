@@ -1,16 +1,12 @@
-(function() {
-  if (!Modernizr.cssanimations) {
-    sweetAlert('Incompatible Explorer Detected', 'This website is not compatible with Internet Explorer 9 and below, please use higher version or Chrome. Sorry for the inconvenience.', 'error');
-    $('.page-loader').hide();
-    return;
-  }
-  // sweet alerts config
-  sweetAlert.setDefaults({
-    customClass: 'star-wars-alert'
-  });
 
+import { StarWarsOpening } from './js/StarWars';
+import { isTouchScreen } from './js/isTouchScreen'
+import $ from 'jquery';
+import './css/styles.scss';
+
+(function () {
   // prevent arrow scrolling in firefox
-  $(window).on('keydown', function(e) {
+  $(window).on('keydown', function (e) {
     if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
       e.preventDefault();
     }
@@ -26,21 +22,19 @@
     isLoading = !isLoading;
   }
 
-  var audioLoaded = false;
   var StarWars = new StarWarsOpening({
     el: '.starwars',
-    onAudioLoad: function() {
-      audioLoaded = true;
+    onAudioLoad: function () {
       function play() {
         $(window).off('focus');
         $(window).off('touchend');
         toggleLoading();
         StarWars.play();
-        $('#read').on('click', function() {
+        $('#read').on('click', function () {
           window.location = './blog';
         });
       }
-      if (!Modernizr.touchevents) {
+      if (!isTouchScreen) {
         if (document.hasFocus()) { // play if has focus
           play();
         } else {
@@ -52,7 +46,7 @@
     }
   });
   StarWars.audio.load();
-  StarWars.audio.onended = function() {
+  StarWars.audio.onended = function () {
     $('article').hide();
     $('.page-later').show();
   };
