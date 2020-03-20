@@ -1,11 +1,11 @@
 import $ from 'jquery';
 export class StarWarsOpening {
   // Context wrapper
-  constructor(args) {
-    this.el = $(args.el);
+  constructor({ el, onAudioLoad }) {
+    this.el = $(el);
 
     // Audio to play the opening crawl
-    this.audio = this.el.find('audio').get(0);
+    this.audio = this.el.find('audio')[0];
 
     // Start the animation
 
@@ -14,7 +14,7 @@ export class StarWarsOpening {
 
     // Remove animation and shows the start screen
     this.reset();
-    this.audio.oncanplay = args.onAudioLoad;
+    this.audio.oncanplay = onAudioLoad;
   }
 
   /*

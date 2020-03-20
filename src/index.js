@@ -34,7 +34,7 @@ import './css/styles.scss';
           window.location = './blog';
         });
       }
-      if (!isTouchScreen) {
+      if (!isTouchScreen()) {
         if (document.hasFocus()) { // play if has focus
           play();
         } else {
