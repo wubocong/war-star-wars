@@ -29,15 +29,15 @@
 $timeFactor: 1;
 $introColor: rgb(75, 213, 238);
 $titlesColor: #ffd54e;
-@import url(https://fonts.css.network/css?family=News+Cycle:400,700);
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap');
 
 @font-face {
   font-family: StarWars;
-  src: url('../font/Starjedi.eot');
-  src: url('../font/Starjedi.eot?#iefix') format('embedded-opentype'),
-    url('../font/Starjedi.woff') format('woff'),
-    url('../font/Starjedi.ttf') format('truetype'),
-    url('../font/Starjedi.svg') format('svg');
+  src: url('../font/starjedi.eot');
+  src: url('../font/starjedi.eot?#iefix') format('embedded-opentype'),
+    url('../font/starjedi.woff') format('woff'),
+    url('../font/starjedi.ttf') format('truetype'),
+    url('../font/starjedi.svg') format('svg');
 }
 
 html,

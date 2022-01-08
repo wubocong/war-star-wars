@@ -1,0 +1,60 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    # runs-on: windows-2022
+    runs-on: ubuntu-18.04
+    
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
+    # - name: Publish
+    #   env:
+    #     TOKEN: ${{secrets.TOKEN}}
+    #   run: |
+    #     chcp 65001
+    #     git config --local user.name 'Warrior Bot'
+    #     git config --local user.email 'noreply@wubocong.com'
+    #     git clone https://github.com/wubocong/wubocong.github.io
+    #     cp -r -force ./dist/* ./wubocong.github.io/
+    #     $timestring=(Get-Date -AsUTC)
+    #     $comment=(git log -1 --pretty=%B)
+    #     cd ./wubocong.github.io
+    #     git remote set-url origin https://$TOKEN@github.com/wubocong/wubocong.github.io.git
+    #     git add .
+    #     git commit -m "Auto Publish $timestring $comment"
+    #     git push origin master
+    - name: Publish
+      env:
+        TOKEN: ${{secrets.TOKEN}}
+      run: |
+        git config --local user.name 'Warrior Bot'
+        git config --local user.email 'noreply@wubocong.com'
+        git clone https://github.com/wubocong/wubocong.github.io
+        cp -rf ./dist/* ./wubocong.github.io/
+        timestring=`TZ=Asia/Shanghai date +'%F %T'`
+        comment=`git log -1 --pretty=%B`
+        cd ./wubocong.github.io
+        git remote set-url origin https://$TOKEN@github.com/wubocong/wubocong.github.io.git
+        git add .
+        git commit -m "Auto Publish $timestring $comment"
+        git push origin master

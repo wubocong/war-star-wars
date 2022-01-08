@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -29,39 +27,35 @@ module.exports = {
       {
         test: /\.(woff|eot|svg|ttf)$/,
         include: path.resolve(__dirname, 'src/font'),
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              name: '[name].[ext]',
-              outputPath: 'font'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: 'font/[name][ext]'
+        }
       },
       {
         test: /\.(png|svg)$/,
         include: path.resolve(__dirname, 'src/img'),
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              name: '[name].[ext]',
-              outputPath: 'img'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name][ext]'
+        }
+      },
+      {
+        test: /\.(ogg|mp3)$/,
+        include: path.resolve(__dirname, 'src/music'),
+        type: 'asset/resource',
+        generator: {
+          filename: 'music/[name][ext]'
+        }
       }
     ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/bundle.js'
+    filename: 'js/bundle.js',
+    clean: true,
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
@@ -69,10 +63,5 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/index.css"
     }),
-    new CopyWebpackPlugin([
-      { from: 'src/music', to: 'music' },
-      { from: 'src/font', to: 'font' },
-      { from: 'src/img', to: 'img' }
-    ]),
   ]
 };
