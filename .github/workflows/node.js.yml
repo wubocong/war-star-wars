@@ -47,8 +47,8 @@ jobs:
       env:
         TOKEN: ${{secrets.TOKEN}}
       run: |
-        git config --local user.name 'Warrior Bot'
-        git config --local user.email 'noreply@wubocong.com'
+        git config --global user.name 'Warrior Bot'
+        git config --global user.email 'noreply@wubocong.com'
         git clone https://github.com/wubocong/wubocong.github.io
         cp -rf ./dist/* ./wubocong.github.io/
         timestring=`TZ=Asia/Shanghai date +'%F %T'`
