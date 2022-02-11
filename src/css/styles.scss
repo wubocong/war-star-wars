@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import 'bb8.scss';
 
 // Used only in the Form input. The text is a outlined SVG Text
@@ -58,15 +59,12 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-.starwars {
-  display: none;
-}
 
 .running {
   overflow: hidden;
 
   .bg {
-    animation: scrolldown 7s * $timeFactor 86s * $timeFactor forwards;
+    animation: scrolldown 7s * $timeFactor 91s * $timeFactor forwards;
     // animation: scrolldown 0s * $timeFactor 0s * $timeFactor forwards;
   }
 }
@@ -84,7 +82,7 @@ button::-moz-focus-inner {
   color: $titlesColor;
   text-shadow: none;
   transition: text-shadow 0.5s ease-out;
-  outline: none;
+  text-decoration: none;
 
   &:focus,
   &:hover {
@@ -114,7 +112,7 @@ button::-moz-focus-inner {
       font-size: 5em;
     }
 
-    @media only screen and (max-width: 960px) {
+    @media only screen and (max-width: 768px) {
       width: 100%;
       margin-top: 0;
 
@@ -133,7 +131,7 @@ button::-moz-focus-inner {
       width: 100%;
     }
 
-    @media only screen and (max-width: 960px) {
+    @media only screen and (max-width: 768px) {
       width: 70%;
       margin: 0 15%;
       right: 0;
@@ -153,12 +151,12 @@ button::-moz-focus-inner {
     color: $introColor;
     animation: 3s ease-in-out infinite blink;
 
-    @media only screen and (max-width: 960px) {
-      width: 80%;
-      margin: 0 10%;
-      right: 0;
-      position: relative;
-    }
+    // @media only screen and (max-width: 768px) {
+    //   width: 80%;
+    //   margin: 0 10%;
+    //   right: 0;
+    //   position: relative;
+    // }
   }
 }
 
@@ -174,6 +172,7 @@ button::-moz-focus-inner {
 }
 
 .starwars {
+  display: none;
   section {
     position: absolute;
     top: 45%;
@@ -214,7 +213,7 @@ button::-moz-focus-inner {
     opacity: 0;
     animation: intro 6s * $timeFactor ease-out 1s * $timeFactor;
 
-    @media only screen and (max-width: 960px) {
+    @media only screen and (max-width: 768px) {
       font-size: 250%;
       padding: 0 50px;
     }
@@ -223,14 +222,14 @@ button::-moz-focus-inner {
   .titles {
     $titles-width: 14.65em;
     width: $titles-width;
-    margin: 0 0 0 (- $titles-width / 2);
+    margin: 0 0 0 math.div(- $titles-width, 2);
     top: auto;
     bottom: 0;
     left: 50%;
     height: 50em;
     font-size: 350%;
 
-    @media only screen and (max-width: 960px) {
+    @media only screen and (max-width: 768px) {
       $titles-width: 100%;
       width: $titles-width;
       font-size: 175%;
@@ -245,7 +244,7 @@ button::-moz-focus-inner {
     >div {
       position: absolute;
       top: 100%;
-      animation: titles 73s * $timeFactor linear 13s * $timeFactor;
+      animation: titles 78s * $timeFactor linear 13s * $timeFactor;
 
       // animation: titles 0s * $timeFactor linear 0s * $timeFactor;
       >p {
@@ -296,7 +295,7 @@ button::-moz-focus-inner {
 //       text-decoration: underline;
 //     }
 //   }
-//   @media only screen and (max-width: 960px) {
+//   @media only screen and (max-width: 768px) {
 //     text-align: center;
 //     bottom: 0;
 //     margin-bottom: 6em;
@@ -321,7 +320,7 @@ button::-moz-focus-inner {
     }
   }
 
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 768px) {
     width: 70%;
     margin: 0 15%;
     line-height: 1.2em;

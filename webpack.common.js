@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  // entry: './src/index.html',
   entry: './src/index.js',
   module: {
     rules: [
@@ -53,7 +54,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.js',
-    clean: true,
+    clean: true, // 每次都清空dist目录
   },
   plugins: [
     new HtmlWebPackPlugin({

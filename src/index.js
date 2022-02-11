@@ -1,24 +1,27 @@
 
 import { isTouchScreen } from './js/isTouchScreen'
-import $ from 'jquery';
 import './css/styles.scss';
+
+$(window).on('keydown', function (e) {
+  if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    e.preventDefault();
+  }
+});
 
 $(window).on('load', function () {
   $('.page-loader').hide();
   $('.prompt').show();
   $('.starwars').show();
   // prevent arrow scrolling in firefox
-  $(window).on('keydown', function (e) {
-    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-      e.preventDefault();
-    }
-  });
+  
+
   let el = $('.starwars');
   let audio = el.find('audio')[0];
   let animation = el.find('.animation');
   let cloned = animation.clone(true);
   animation.remove();
   animation = cloned;
+
   audio.oncanplay = function () {
     function play() {
       $('.prompt').hide();
@@ -53,9 +56,6 @@ $(window).on('load', function () {
         if (cssRule)
           cssRule.appendRule("100% { top: " + animDist + "% }");
       }
-      $('#read').on('click', function () {
-        window.location = './blog';
-      });
     }
     if (!isTouchScreen()) {
       $(window).on('click', play);
@@ -64,7 +64,7 @@ $(window).on('load', function () {
     }
   };
   audio.onended = function () {
-    $('article').hide();
+    $('.starwars').hide();
     $('.page-later').show();
   };
   audio.load();
