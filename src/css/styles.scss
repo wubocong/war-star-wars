@@ -146,7 +146,7 @@ button::-moz-focus-inner {
     top: 50%;
     font-size: 80px;
     line-height: 80px;
-    margin: -40px 0;
+    transform: translateY(-50%);
     text-align: center;
     color: $introColor;
     animation: 3s ease-in-out infinite blink;
@@ -272,12 +272,6 @@ button::-moz-focus-inner {
     // animation-delay: 0s;
     >img {
       width: 300px;
-    }
-
-    >svg {
-      width: 900px;
-      display: none;
-      font-size: 210px;
     }
   }
 }

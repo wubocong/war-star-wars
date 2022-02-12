@@ -68,13 +68,4 @@ $(window).on('load', function () {
     $('.page-later').show();
   };
   audio.load();
-
-
-  function setLogo() {
-    var width = $(window).width();
-    $('#logoimg').css('width', width);
-    $('#logosvg').css('width', width);
-  }
-  $(window).on('resize', setLogo);
-  $(window).on('load', setLogo);
 });
