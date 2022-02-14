@@ -58,8 +58,8 @@
     </script>
   </head>
 
-  <body>
-    <div class="verticalWrapper page-loader">
+  <body class="noselect">
+    <div class="vertical-wrapper page-loader">
       <div class="inner">
         <div class="bb8">
           <div class="bb8-top">
@@ -95,7 +95,6 @@
         </div>
       </div>
     </div>
-
     <div class="bg">
       <div class="deathstar"><img src="img/deathstar.png" /></div>
       <div class="war-title">
@@ -106,16 +105,16 @@
     </div>
 
     <article class="starwars">
+      <a href="/blog" class="skip">SKIP</a>
       <audio preload="auto">
         <source src="music/intro.ogg" type="audio/ogg" />
         <source src="music/intro.mp3" type="audio/mpeg" />
       </audio>
-      <div class="animation">
-        <div class="introBg"></div>
-        <div class="verticalWrapper">
-          <section class="intro noselect">A long time ago, in a galaxy far,<br />far away....</section>
+      <div id="animation-container">
+        <div class="vertical-wrapper">
+          <section class="intro">A long time ago, in a galaxy far,<br />far away....</section>
         </div>
-        <section class="titles noselect">
+        <section class="titles">
           <div>
             <p class="episode tcenter">Episode 〇</p>
             <p class="title tcenter">THE FORCE DECENTRALIZES</p>
@@ -135,10 +134,8 @@
             </div>
           </div>
         </section>
-        <div class="verticalWrapper">
-          <section class="logo noselect">
-            <img id="logoimg" src="img/logo.svg" />
-          </section>
+        <div class="vertical-wrapper">
+          <img class="logo" src="img/logo.svg" />
         </div>
       </div>
     </article>
