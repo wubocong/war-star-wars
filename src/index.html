@@ -107,8 +107,8 @@
     <article class="starwars">
       <a href="/blog" class="skip">SKIP</a>
       <audio preload="auto">
-        <source src="music/intro.ogg" type="audio/ogg" />
-        <source src="music/intro.mp3" type="audio/mpeg" />
+        <source src="<%= htmlWebpackPlugin.options.cdnHost %>music/intro.ogg" type="audio/ogg" />
+        <source src="<%= htmlWebpackPlugin.options.cdnHost %>music/intro.mp3" type="audio/mpeg" />
       </audio>
       <div id="animation-container">
         <div class="vertical-wrapper">
