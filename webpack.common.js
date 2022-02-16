@@ -21,7 +21,7 @@ module.exports = {
         use: [
           { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } },
           'css-loader',
-          { loader: 'postcss-loader' },
+          'postcss-loader',
           'sass-loader',
         ]
       },
@@ -60,7 +60,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
-      cdnHost: "https://warrior-10011799.cos.ap-shanghai.myqcloud.com/"
+      hash: true,
+      templateParameters: {
+        cdnHost: "https://warrior-10011799.cos.ap-shanghai.myqcloud.com/"
+      }
     }),
     new MiniCssExtractPlugin({
       filename: "css/index.css"
