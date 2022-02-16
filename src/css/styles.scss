@@ -155,15 +155,15 @@ body {
   }
 
   .titles {
-    $titles-width: 14.65rem;
+    $titles-width: 14.65em;
     width: $titles-width;
     margin: 0 0 0 math.div(-$titles-width, 2);
     top: auto;
     bottom: 0;
     left: 50%;
     position: absolute;
-    height: 50rem;
-    font-size: 350%;
+    height: 50em;
+    font-size: 3.5rem;
 
     @media only screen and (max-width: 768px) {
       $titles-width: 100%;
@@ -184,13 +184,13 @@ body {
 
       // animation: titles 0s * $timeFactor linear 0s * $timeFactor; // 调试用
       > p {
-        margin: 1.35rem 0 1.85rem 0;
-        line-height: 1.35rem;
+        margin: 1.35em 0 1.85em 0;
+        line-height: 1.35em;
         backface-visibility: hidden;
       }
 
       .tcenter {
-        margin: 1.35rem 0 -1rem 0;
+        margin: 1.35em 0 -1em 0;
         text-align: center;
       }
     }
