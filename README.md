@@ -22,4 +22,5 @@ npm start
 ## FAQ
 
 Q: 启动开发服务器后修改js与sass文件，刷新页面静态资源报错
+
 A: Webpack入口文件是index.js，hmr时没有复制html模板中的静态资源，需要手动触发index.html的保存。之后考虑将入口改为index.html。
